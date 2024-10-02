@@ -10,6 +10,7 @@ export const GoalInput = ({ setGoals }) => {
 
   function addGoalHandler() {
     setGoals((current) => [...current, goalText]);
+    setGoalText('');
   }
 
   return (
@@ -18,6 +19,7 @@ export const GoalInput = ({ setGoals }) => {
         placeholder='Ponha teu item aqui'
         style={styles.textInput}
         onChangeText={goalInputHandler}
+        value={goalText}
       />
       <Button title='Adicionar' onPress={addGoalHandler} />
     </View>
