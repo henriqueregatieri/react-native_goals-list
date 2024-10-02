@@ -5,7 +5,7 @@ import {
   TextInput,
   Text,
   View,
-  ScrollView,
+  FlatList,
 } from 'react-native';
 
 export default function App() {
@@ -35,12 +35,11 @@ export default function App() {
         <Button title='Adicionar' onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView>
-          {goals.map((goal, index) => (
-            <View style={styles.goalItemContainer}>
-              <Text key={index} style={styles.goalItemText}>
-                {goal}
-              </Text>
+        <FlatList
+          data={goals}
+          renderItem={({ item, index }) => (
+            <View style={styles.goalItemContainer} key={index}>
+              <Text style={styles.goalItemText}>{item}</Text>
               <Text
                 title='Remover'
                 style={styles.goalItemButton}
@@ -51,8 +50,8 @@ export default function App() {
                 X
               </Text>
             </View>
-          ))}
-        </ScrollView>
+          )}
+        />
       </View>
     </View>
   );
