@@ -1,12 +1,7 @@
 import { useState } from 'react';
-import {
-  Button,
-  StyleSheet,
-  TextInput,
-  Text,
-  View,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
+import { GoalItem } from './components/GoalItem';
+import { GoalInput } from './components/GoalInput';
 
 export default function App() {
   const [goalText, setGoalText] = useState('');
@@ -26,30 +21,15 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder='Ponha teu item aqui'
-          style={styles.textInput}
-          onChangeText={goalInputHandler}
-        />
-        <Button title='Adicionar' onPress={addGoalHandler} />
-      </View>
+      <GoalInput
+        addGoalHandler={addGoalHandler}
+        goalInputHandler={goalInputHandler}
+      />
       <View style={styles.goalsContainer}>
         <FlatList
           data={goals}
           renderItem={({ item, index }) => (
-            <View style={styles.goalItemContainer} key={index}>
-              <Text style={styles.goalItemText}>{item}</Text>
-              <Text
-                title='Remover'
-                style={styles.goalItemButton}
-                onPress={() => {
-                  removeGoal(index);
-                }}
-              >
-                X
-              </Text>
-            </View>
+            <GoalItem item={item} index={index} removeGoal={removeGoal} />
           )}
         />
       </View>
@@ -62,43 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
   },
-  inputContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    gap: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: 'silver',
-    paddingBottom: 20,
-    marginBottom: 20,
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: 'silver',
-    width: '70%',
-    padding: 10,
-  },
   goalsContainer: {
     flex: 7,
-  },
-  goalItemContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    margin: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 6,
-    backgroundColor: 'dodgerblue',
-    borderRadius: 100,
-  },
-  goalItemText: {
-    color: 'white',
-  },
-  goalItemButton: {
-    backgroundColor: 'gray',
-    color: 'white',
-    paddingHorizontal: 4,
   },
 });
