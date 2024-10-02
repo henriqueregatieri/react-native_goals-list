@@ -1,14 +1,49 @@
+import { useState } from 'react';
 import { Button, StyleSheet, TextInput, Text, View } from 'react-native';
 
 export default function App() {
+  const [goalText, setGoalText] = useState('');
+  const [goals, setGoals] = useState([]);
+
+  function goalInputHandler(text) {
+    setGoalText(text);
+  }
+
+  function addGoalHandler() {
+    setGoals((current) => [...current, goalText]);
+  }
+
+  function removeGoal(index) {
+    setGoals(goals.filter((_, i) => i !== index));
+  }
+
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <TextInput placeholder='Ponha teu item!' style={styles.textInput} />
-        <Button title='Adicionar' />
+        <TextInput
+          placeholder='Ponha teu item aqui'
+          style={styles.textInput}
+          onChangeText={goalInputHandler}
+        />
+        <Button title='Adicionar' onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <Text>Minha lista</Text>
+        {goals.map((goal, index) => (
+          <View style={styles.goalItemContainer}>
+            <Text key={index} style={styles.goalItemText}>
+              {goal}
+            </Text>
+            <Text
+              title='Remover'
+              style={styles.goalItemButton}
+              onPress={() => {
+                removeGoal(index);
+              }}
+            >
+              X
+            </Text>
+          </View>
+        ))}
       </View>
     </View>
   );
@@ -16,17 +51,19 @@ export default function App() {
 
 const styles = StyleSheet.create({
   appContainer: {
-    paddingHorizontal: 16,
     flex: 1,
+    paddingHorizontal: 16,
   },
   inputContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     gap: 10,
     borderBottomWidth: 1,
     borderBottomColor: 'silver',
+    paddingBottom: 20,
+    marginBottom: 20,
   },
   textInput: {
     borderWidth: 1,
@@ -35,6 +72,25 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   goalsContainer: {
-    flex: 4,
+    flex: 7,
+  },
+  goalItemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    margin: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 6,
+    backgroundColor: 'dodgerblue',
+    borderRadius: 100,
+  },
+  goalItemText: {
+    color: 'white',
+  },
+  goalItemButton: {
+    backgroundColor: 'gray',
+    color: 'white',
+    paddingHorizontal: 4,
   },
 });
