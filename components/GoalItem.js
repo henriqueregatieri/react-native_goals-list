@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 export const GoalItem = ({ item, index, setGoals }) => {
   function removeGoal(index) {
@@ -8,18 +8,15 @@ export const GoalItem = ({ item, index, setGoals }) => {
   }
 
   return (
-    <View style={styles.goalItemContainer} key={index}>
-      <Text style={styles.goalItemText}>{item}</Text>
-      <Text
-        title='Remover'
-        style={styles.goalItemButton}
-        onPress={() => {
-          removeGoal(index);
-        }}
-      >
-        X
-      </Text>
-    </View>
+    <Pressable
+      onPress={() => {
+        removeGoal(index);
+      }}
+    >
+      <View style={styles.goalItemContainer} key={index}>
+        <Text style={styles.goalItemText}>{item}</Text>
+      </View>
+    </Pressable>
   );
 };
 
@@ -37,10 +34,5 @@ const styles = StyleSheet.create({
   },
   goalItemText: {
     color: 'white',
-  },
-  goalItemButton: {
-    backgroundColor: 'gray',
-    color: 'white',
-    paddingHorizontal: 4,
   },
 });
