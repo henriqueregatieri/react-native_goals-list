@@ -4,32 +4,16 @@ import { GoalItem } from './components/GoalItem';
 import { GoalInput } from './components/GoalInput';
 
 export default function App() {
-  const [goalText, setGoalText] = useState('');
   const [goals, setGoals] = useState([]);
-
-  function goalInputHandler(text) {
-    setGoalText(text);
-  }
-
-  function addGoalHandler() {
-    setGoals((current) => [...current, goalText]);
-  }
-
-  function removeGoal(index) {
-    setGoals(goals.filter((_, i) => i !== index));
-  }
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput
-        addGoalHandler={addGoalHandler}
-        goalInputHandler={goalInputHandler}
-      />
+      <GoalInput setGoals={setGoals} />
       <View style={styles.goalsContainer}>
         <FlatList
           data={goals}
           renderItem={({ item, index }) => (
-            <GoalItem item={item} index={index} removeGoal={removeGoal} />
+            <GoalItem item={item} index={index} setGoals={setGoals} />
           )}
         />
       </View>

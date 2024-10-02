@@ -1,6 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export const GoalItem = ({ item, index, removeGoal }) => {
+export const GoalItem = ({ item, index, setGoals }) => {
+  function removeGoal(index) {
+    setGoals((current) => {
+      return current.filter((_, i) => i !== index);
+    });
+  }
+
   return (
     <View style={styles.goalItemContainer} key={index}>
       <Text style={styles.goalItemText}>{item}</Text>
