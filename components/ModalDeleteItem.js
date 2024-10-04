@@ -44,21 +44,22 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   buttonsContainer: {
-    gap: 20,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
   },
   buttonYes: {
     backgroundColor: '#7d7',
-    paddingHorizontal: 30,
+    paddingHorizontal: 22,
     paddingVertical: 24,
     fontSize: 16,
-    borderRadius: '100%',
+    borderRadius: 100,
   },
   buttonNo: {
     backgroundColor: '#d77',
-    paddingHorizontal: 30,
+    paddingHorizontal: 22,
     paddingVertical: 24,
     fontSize: 16,
-    borderRadius: '100%',
+    borderRadius: 100,
   },
 });

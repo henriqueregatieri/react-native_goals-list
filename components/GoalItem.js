@@ -48,10 +48,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 6,
-    backgroundColor: 'dodgerblue',
+    backgroundColor: 'darkblue',
     borderRadius: 100,
   },
   goalItemText: {
     color: 'white',
+    fontSize: 18,
   },
 });

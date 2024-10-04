@@ -21,7 +21,7 @@ export const GoalInput = ({ setGoals }) => {
         onChangeText={goalInputHandler}
         value={goalText}
       />
-      <Button title='Adicionar' onPress={addGoalHandler} />
+      <Button title='Adicionar' onPress={addGoalHandler} color='lightskyblue' />
     </View>
   );
 };
@@ -31,17 +31,20 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     gap: 10,
     borderBottomWidth: 1,
     borderBottomColor: 'silver',
     paddingBottom: 20,
     marginBottom: 20,
+    marginTop: 50,
   },
   textInput: {
     borderWidth: 1,
     borderColor: 'silver',
     width: '70%',
     padding: 10,
+    backgroundColor: '#e8faff',
+    color: 'black',
   },
 });
